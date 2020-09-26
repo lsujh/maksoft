@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+<title>Добавить дополнительный офис</title>
+{% block content %}
+<div id="content" class="colM">
+    <h1>Добавить дополнительный офис</h1>
+    <div id="content-main">
+        <form action="" method="post" id="additionaloffice_form" novalidate><input type="hidden" name="csrfmiddlewaretoken" value="TCJgTyY6UlmU3m1AvzEFEo04BWCSf6MkS3Sqs2RTxnzdP7Fz2D9EiSeOV3PnZQyP">
+            {{ formset.management_form }}
+            {% for form in formset %}
+            <div class="module aligned ">
+                <div class="form-row">
+                    {% for field in form %}
+                    <p>
+                        {% if field.label != "Id" %}{{ field.label_tag }}{% endif %}{{ field }}
+                        {% if field.label == "Компания" %}
+                        <a class="related-widget-wrapper-link add-related" id="add_id_company"
+                           href="/admin/account/company/add/?_to_field=id&amp;_popup=1"
+                           title="Add another company"><img src="/static/admin/img/icon-addlink.svg" alt="Add"></a>
+                        {% endif %}
+                        {{ field.errors }}
+                    </p>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endfor %}
+            <div class="submit-row">
+                <input type="submit" value="Сохранить" name="_save">
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

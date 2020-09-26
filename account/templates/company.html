@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+<title>Добавить компанию</title>
+{% block content %}
+<div id="content" class="colM">
+    <h1>Добавить компанию</h1>
+    <div id="content-main">
+        <form method="post" id="company_form">
+            {% csrf_token %}
+            {{ formset.management_form }}
+            {% for form in formset %}
+            <div class="module aligned ">
+                <div class="form-row">
+                    {{ form.as_p }}
+                </div>
+            </div>
+            {% endfor %}
+            <div class="submit-row">
+                <input type="submit" value="Сохранить" name="_save">
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+<title>Добавить кабинет</title>
+{% block content %}
+<div id="content" class="colM">
+    <h1>Добавить кабинет</h1>
+    <div id="content-main">
+        <form method="post" id="cabinet_form">
+            {% csrf_token %}
+            {{ formset.management_form }}
+            {% for form in formset %}
+            <div class="module aligned ">
+                <div class="form-row">
+                    {% for field in form %}
+                    <p> {% if field.label != "Id" %}{{ field.label_tag }}{% endif %}{{ field }}
+                        {% if field.label == "Офис" %}
+                        <a class="related-widget-wrapper-link add-related" id="add_id_additional_office"
+                           href="/admin/account/additionaloffice/add/?_to_field=id&amp;_popup=1"
+                           title="Add another additional office"><img src="/static/admin/img/icon-addlink.svg" alt="Add"></a>
+                        {% endif %}{{ field.errors }}
+                    </p>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endfor %}
+            <input type="submit" value="Сохранить" name="_save">
+        </form>
+    </div>
+</div>
+{% endblock %}

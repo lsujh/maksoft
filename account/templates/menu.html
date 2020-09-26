@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div id="content" class="colM">
+    <div id="content-main">
+        <div class="module aligned ">
+            <p><a href="{% url 'account:company' %}">Компания</a></p>
+            <p><a href="{% url 'account:additional_office' %}">Дополнительный офис</a></p>
+            <p><a href="{% url 'account:cabinet' %}">Кабинет</a></p>
+            <p><a href="{% url 'account:collaborator' %}">Сотрудник</a></p>
+        </div>
+    </div>
+</div>
+{% endblock %}
